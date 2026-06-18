@@ -1,0 +1,20 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: hw-mosquitto
+    volumes:
+      - "./mosquitto/config:/mosquitto/config"
+
+  telegraf:
+    image: telegraf
+    container_name: hw-telegraf
+    volumes:
+      - "./telegraf.conf:/etc/telegraf/telegraf.conf"
+
+#  influxdb:
+#    image: influxdb:2-alpine
+#    container_name: hw-influxdb
+
+#   grafana:
+#     image: grafana/grafana
+#     container_name: hw-grafana
