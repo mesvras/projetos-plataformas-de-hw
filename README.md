@@ -7,38 +7,71 @@ O projeto consiste num protótipo de sistema de monitoramento de condições amb
 - Servidor Grafana
 
 
+
 ### TODO:
 
 - [ ] Passar o token do influxdb2 para o telegraf via injeção
 - [ ] Configurar container de VPN server na "frente" da rede
 - [ ] Melhorar o dashboard
 
-### Criação de usuário no Mosquitto
+## Como rodar?
 
-A autenticação via credenciais de usuário é configurada em `mosquitto.conf` e as identidades são gerenciadas em `mosquitto.auth.`
+### Pré-requisitos
 
-Para criar o arquivo de identidades e adicionar o usuário execute
+- Docker
+
+
+1. Clone o repositório
+
+```bash
+git clone git@github.com:mesvras/projetos-plataformas-de-hw.git
+```
+
+2. Suba os containers
+
+```bash
+docker compose up
+```
+
+3. Acesse os serviços expostos em seus respectivos endereços:
+
+- Painel Grafana
+
+  http://localhost:3000
+
+
+- Painel InfluxDB2
+
+  http://localhost:8086
+
+
+- Mosquitto Broker
+
+  http://localhost:1883
+
+
+## Criação de usuário no Mosquitto
+
+A autenticação via credenciais de usuário é configurada em `mosquitto.conf` e as identidades são gerenciadas em `mosquitto.auth.` Há um usuário admin:admin pré-configurado.
+
+Para criar um arquivo de identidades novo e adicionar um novo usuário execute
 
 ```bash
 mosquitto_passwd -c [PASSWORDFILE] [USER]
 ```
 
-Para adicionar novos usuários a esse arquivo utilize:
+Para adicionar novos usuários a um arquivo utilize:
 
 ```bash
   mosquitto_passwd -b [PASSWORDFILE] [USER] [PSWD]
 ```
 
-### Permissões
+## Permissões
 
 Algumas das permissões abaixo podem ser necessárias para subir os containers:
 
 ```bash
 sudo chown 1883:1883 mosquitto/config/mosquitto.auth
 sudo chmod 640 mosquitto/config/mosquitto.auth
-
-sudo chown 1883:1883 mosquitto/config/mosquitto.conf
-sudo chmod 644 mosquitto/config/mosquitto.conf
-
 sudo chown -R 472:472 grafana/data
 ```
