@@ -1,0 +1,16 @@
+apiVersion: 1
+
+datasources:
+  - name: influxdb
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086
+
+    jsonData:
+      version: Flux
+      organization: datacenter
+      defaultBucket: machineroom-monitor
+
+    secureJsonData:
+      token: $__file{/run/secrets/influxdb2-admin-token}
+
