@@ -25,7 +25,7 @@ O projeto consiste num protótipo de sistema de monitoramento de condições amb
 1. Clone o repositório
 
 ```bash
-git clone git@github.com:mesvras/projetos-plataformas-de-hw.git
+git clone git@github.com:mesvras/projeto-final-iot.git
 ```
 
 2. Suba os containers
